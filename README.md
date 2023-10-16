@@ -1,4 +1,4 @@
-# hpe.ilo  - Ansible playbooks and roles for iLOs using Redfish APIs
+# hpe.ilo  - Ansible playbooks and roles for iLOs using Redfish API
 
 This repository contains the Ansible playbook samples and Ansible roles for automating the HPE server lifecycle management using iLOs.
 The examples highlight the capabilities of the modules and their ability to be integrated into more complex playbooks, workflows, and applications.
