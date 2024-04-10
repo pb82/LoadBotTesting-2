@@ -1,14 +1,15 @@
 ---
 - name: Get specified logical drives details
-  ilo_storage:
-    category: Systems
-    command: GetSpecifiedLogicalDrives
+  register: logical_drives_data
+  hpe.ilo.ilo_storage:
+    category: "Systems"
+    command: "GetSpecifiedLogicalDrives"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
     logical_drives_names: "{{ logical_drives_names }}"
-  register: logical_drives_data
 
 - name: Logical drives present in the server
-  debug:
+  ansible.builtin.debug:
     msg: "{{ logical_drives_data }}"
+
