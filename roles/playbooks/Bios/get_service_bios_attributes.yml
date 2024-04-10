@@ -4,12 +4,13 @@
   gather_facts: false
   tasks:
     - name: Get service BIOS attributes
-      get_service_bios_attributes:
+      register: result
+      hpe.ilo.get_service_bios_attributes:
         baseuri: "{{ baseuri }}"
         username: "{{ username }}"
         password: "{{ password }}"
-      register: result
 
     - name: Service BIOS settings in the server
-      debug:
+      ansible.builtin.debug:
         msg: "{{ result }}"
+

@@ -1,14 +1,15 @@
 ---
 - name: Map User Certificate
-  ilo_security:
-    category: Manager
-    command: MapUserCertificate
+  register: result
+  hpe.ilo.ilo_security:
+    category: "Manager"
+    command: "MapUserCertificate"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
     user_cert_file: "{{ user_cert_file }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+
