@@ -1,19 +1,20 @@
 ---
 - name: Set service BIOS attributes
-  set_service_bios_attributes:
+  when: service_attributes
+  register: result
+  hpe.ilo.set_service_bios_attributes:
     service_attributes: "{{ service_attributes }}"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  when: service_attributes
-  register: result
 
 - name: Status
-  debug:
+  when: service_attributes
+  ansible.builtin.debug:
     msg: "{{ result }}"
-  when: service_attributes
 
 - name: Status
-  debug:
-    msg: Service attributes are not provided
   when: not service_attributes
+  ansible.builtin.debug:
+    msg: "Service attributes are not provided"
+

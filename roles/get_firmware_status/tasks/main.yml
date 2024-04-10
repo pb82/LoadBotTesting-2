@@ -1,13 +1,14 @@
 ---
 - name: Get firmware upgrade/upload status
-  ilo_firmware:
-    category: TaskService
-    command: GetFirmwareStatus
+  register: result
+  hpe.ilo.ilo_firmware:
+    category: "TaskService"
+    command: "GetFirmwareStatus"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+

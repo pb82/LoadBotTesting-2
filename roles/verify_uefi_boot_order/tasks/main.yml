@@ -1,14 +1,15 @@
 ---
 - name: Verify input Boot Order against the server boot order
-  ilo_boot:
-    category: Systems
-    command: VerifyUefiBootOrder
+  register: boot_verification_status
+  hpe.ilo.ilo_boot:
+    category: "Systems"
+    command: "VerifyUefiBootOrder"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
     uefi_boot_order: "{{ uefi_boot_order }}"
-  register: boot_verification_status
 
 - name: BootOrder verification status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ boot_verification_status }}"
+
