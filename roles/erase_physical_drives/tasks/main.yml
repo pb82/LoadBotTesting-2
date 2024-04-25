@@ -1,13 +1,14 @@
 ---
 - name: Erase Physical Drives
-  ilo_storage:
-    category: Systems
-    command: ErasePhysicalDrives
+  register: result
+  hpe.ilo.ilo_storage:
+    category: "Systems"
+    command: "ErasePhysicalDrives"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+

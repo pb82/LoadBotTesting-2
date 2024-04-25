@@ -1,14 +1,15 @@
 ---
 - name: Creating SNMP alert destinations
-  ilo_snmp:
-    category: Manager
-    command: CreateSNMPAlertDestinations
+  register: result
+  hpe.ilo.ilo_snmp:
+    category: "Manager"
+    command: "CreateSNMPAlertDestinations"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
     alert_destinations: "{{ alert_destinations }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+
