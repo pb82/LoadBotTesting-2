@@ -1,13 +1,14 @@
 ---
 - name: Enable Secure Boot
   community.general.redfish_config:
-    category: Systems
-    command: EnableSecureBoot
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
+    category: "Systems"
+    command: "EnableSecureBoot"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
   register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+

@@ -1,14 +1,15 @@
 ---
 - name: Updating SNMPv3 users
-  ilo_snmp:
-    category: Manager
-    command: UpdateSNMPv3Users
+  register: result
+  hpe.ilo.ilo_snmp:
+    category: "Manager"
+    command: "UpdateSNMPv3Users"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
     snmpv3_users: "{{ snmpv3_users }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+

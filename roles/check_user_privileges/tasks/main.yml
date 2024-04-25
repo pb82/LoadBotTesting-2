@@ -1,12 +1,13 @@
 ---
 - name: Check User Privileges
-  ilo_manage:
-    category: Systems
-    command: CheckUserPrivileges
+  register: user_privileges
+  hpe.ilo.ilo_manage:
+    category: "Systems"
+    command: "CheckUserPrivileges"
     baseuri: "{{ baseuri }}"
     auth_token: "{{ auth_token }}"
-  register: user_privileges
 
 - name: User Privileges
-  debug:
+  ansible.builtin.debug:
     msg: "{{ user_privileges }}"
+
