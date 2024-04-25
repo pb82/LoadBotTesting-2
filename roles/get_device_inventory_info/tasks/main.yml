@@ -1,13 +1,14 @@
 ---
 - name: Get Device Inventory Information
-  ilo_device:
-    category: Chassis
-    command: GetDeviceInventoryInfo
+  register: device_inventory_info
+  hpe.ilo.ilo_device:
+    category: "Chassis"
+    command: "GetDeviceInventoryInfo"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: device_inventory_info
 
 - name: Device Inventory Information in the server
-  debug:
+  ansible.builtin.debug:
     msg: "{{ device_inventory_info }}"
+
