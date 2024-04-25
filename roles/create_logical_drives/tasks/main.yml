@@ -1,14 +1,15 @@
 ---
 - name: Create logical drives
-  ilo_storage:
+  register: result
+  hpe.ilo.ilo_storage:
     category: Systems
     command: CreateLogicalDrives
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
     raid_details: "{{ raid_details }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+

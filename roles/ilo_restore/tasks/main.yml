@@ -1,13 +1,14 @@
 ---
 - name: Perform restore operation on the iLO
-  ilo_manage:
+  register: result
+  hpe.ilo.ilo_manage:
     category: Manager
     command: iLORestore
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+

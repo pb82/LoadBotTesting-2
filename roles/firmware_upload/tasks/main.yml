@@ -1,6 +1,7 @@
 ---
 - name: Perform firmware upload to ilo repository
-  ilo_firmware:
+  register: result
+  hpe.ilo.ilo_firmware:
     category: UpdateService
     command: FirmwareUpload
     baseuri: "{{ baseuri }}"
@@ -8,8 +9,8 @@
     password: "{{ password }}"
     image_uri: "{{ image_uri }}"
     file_name: "{{ file_name }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+
