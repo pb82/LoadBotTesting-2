@@ -1,8 +1,8 @@
 ---
 - name: Enable Secure Boot
   community.general.redfish_config:
-    category: Systems
-    command: EnableSecureBoot
+    category: "Systems"
+    command: "EnableSecureBoot"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

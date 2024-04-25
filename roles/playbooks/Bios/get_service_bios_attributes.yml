@@ -13,3 +13,4 @@
   - name: Service BIOS settings in the server
     debug:
       msg: "{{ result }}"
+

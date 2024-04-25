@@ -13,3 +13,4 @@
   - name: Server reboot status
     debug:
       msg: "{{ result }}"
+

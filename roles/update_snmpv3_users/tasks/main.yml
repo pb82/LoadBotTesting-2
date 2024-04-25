@@ -1,8 +1,8 @@
 ---
 - name: Updating SNMPv3 users
   ilo_snmp:
-    category: Manager
-    command: UpdateSNMPv3Users
+    category: "Manager"
+    command: "UpdateSNMPv3Users"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -12,3 +12,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

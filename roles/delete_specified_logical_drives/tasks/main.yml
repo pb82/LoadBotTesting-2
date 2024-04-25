@@ -1,8 +1,8 @@
 ---
 - name: Delete specified logical drives
   ilo_storage:
-    category: Systems
-    command: DeleteSpecifiedLogicalDrives
+    category: "Systems"
+    command: "DeleteSpecifiedLogicalDrives"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -12,3 +12,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

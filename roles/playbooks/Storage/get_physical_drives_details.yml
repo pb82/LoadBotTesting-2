@@ -13,3 +13,4 @@
     - name: Physical drives present in the server
       debug:
         msg: "{{ physical_drives_details }}"
+

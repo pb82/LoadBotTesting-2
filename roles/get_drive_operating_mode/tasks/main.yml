@@ -1,8 +1,8 @@
 ---
 - name: Get Drive Operating Mode
   ilo_storage:
-    category: Systems
-    command: GetDriveOperatingMode
+    category: "Systems"
+    command: "GetDriveOperatingMode"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Drive Operating Mode
   debug:
     msg: "{{ result }}"
+

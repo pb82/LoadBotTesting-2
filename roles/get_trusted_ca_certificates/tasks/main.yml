@@ -1,8 +1,8 @@
 ---
 - name: Get Trusted CA Certificates
   ilo_security:
-    category: Manager
-    command: GetTrustedCACertificates
+    category: "Manager"
+    command: "GetTrustedCACertificates"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Trusted CA Certificates in the server
   debug:
     msg: "{{ trusted_ca_certificates }}"
+

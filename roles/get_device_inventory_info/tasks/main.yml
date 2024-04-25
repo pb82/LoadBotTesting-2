@@ -1,8 +1,8 @@
 ---
 - name: Get Device Inventory Information
   ilo_device:
-    category: Chassis
-    command: GetDeviceInventoryInfo
+    category: "Chassis"
+    command: "GetDeviceInventoryInfo"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Device Inventory Information in the server
   debug:
     msg: "{{ device_inventory_info }}"
+

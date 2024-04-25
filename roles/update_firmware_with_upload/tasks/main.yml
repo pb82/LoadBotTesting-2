@@ -1,8 +1,8 @@
 ---
 - name: Perform firmware upgrade on the server using image uri
   ilo_firmware:
-    category: UpdateService
-    command: UpdateFirmwareWithUpload
+    category: "UpdateService"
+    command: "UpdateFirmwareWithUpload"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -13,3 +13,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

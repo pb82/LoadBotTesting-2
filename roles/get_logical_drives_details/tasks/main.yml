@@ -14,3 +14,4 @@
     data:
       logical_drives_count: "{{ logical_drives_data['logical_drives_details'] | length }}"
       logical_drives_details: "{{ logical_drives_data['logical_drives_details'] }}"
+

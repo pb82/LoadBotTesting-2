@@ -1,8 +1,8 @@
 ---
 - name: Get logical drives
   ilo_storage:
-    category: Systems
-    command: GetLogicalDrives
+    category: "Systems"
+    command: "GetLogicalDrives"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Logical drives present in the server
   debug:
     msg: "{{ logical_drives_data }}"
+

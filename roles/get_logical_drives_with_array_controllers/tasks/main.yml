@@ -1,8 +1,8 @@
 ---
 - name: Get logical drives details with array controllers
   ilo_storage:
-    category: Systems
-    command: GetLogicalDrivesWithArrayControllers
+    category: "Systems"
+    command: "GetLogicalDrivesWithArrayControllers"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Logical drives present in the server
   debug:
     msg: "{{ logical_drives_data }}"
+

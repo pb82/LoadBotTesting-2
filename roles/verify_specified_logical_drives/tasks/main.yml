@@ -1,8 +1,8 @@
 ---
 - name: Verify specified logical drives
   ilo_storage:
-    category: Systems
-    command: VerifySpecifiedLogicalDrives
+    category: "Systems"
+    command: "VerifySpecifiedLogicalDrives"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -12,3 +12,4 @@
 - name: Logical drives verification status
   debug:
     msg: "{{ result }}"
+

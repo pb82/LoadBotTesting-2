@@ -20,15 +20,15 @@
   block:
     - name: Perform firmware upgrade on the server without maintenance window through install set URL
       ilo_firmware:
-        category: UpdateService
-        command: UpdateFirmwareThroughInstallSet
+        category: "UpdateService"
+        command: "UpdateFirmwareThroughInstallSet"
         baseuri: "{{ baseuri }}"
         username: "{{ username }}"
         password: "{{ password }}"
         install_set_attributes:
-          Name: "{{ input_file.install_set_name }}"
+          Name: '{{ input_file.install_set_name }}'
           Description: "{{ input_file.Description | default('')}}"
-          Install_set_sequence: "{{ input_file.install_set_sequence }}"
+          Install_set_sequence: '{{ input_file.install_set_sequence }}'
       register: firmware_upgrade_rsp
 
     - name: Status
@@ -41,15 +41,15 @@
   block:
     - name: Perform firmware upgrade on the server with maintenance window through install set URL
       ilo_firmware:
-        category: UpdateService
-        command: UpdateFirmwareThroughInstallSet
+        category: "UpdateService"
+        command: "UpdateFirmwareThroughInstallSet"
         baseuri: "{{ baseuri }}"
         username: "{{ username }}"
         password: "{{ password }}"
         install_set_attributes:
-          Name: "{{ input_file.install_set_name }}"
+          Name: '{{ input_file.install_set_name }}'
           Description: "{{ input_file.Description | default('')}}"
-          Install_set_sequence: "{{ input_file.install_set_sequence }}"
+          Install_set_sequence: '{{ input_file.install_set_sequence }}'
         maintenance_window_details: "{{ input_file.maintenance_window}}"
       register: firmware_upgrade_rsp
 

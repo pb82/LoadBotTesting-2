@@ -1,8 +1,8 @@
 ---
 - name: Get USB information
   ilo_storage:
-    category: Systems
-    command: GetUSBInfo
+    category: "Systems"
+    command: "GetUSBInfo"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: USB information in the server
   debug:
     msg: "{{ usb_info }}"
+

@@ -1,8 +1,8 @@
 ---
 - name: Wait for iLO Reboot Completion
   ilo_manage:
-    category: Systems
-    command: WaitforiLORebootCompletion
+    category: "Systems"
+    command: "WaitforiLORebootCompletion"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: iLO reboot status
   debug:
     msg: "{{ result }}"
+

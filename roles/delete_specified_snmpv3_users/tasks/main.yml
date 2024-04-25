@@ -1,8 +1,8 @@
 ---
 - name: Deleting specified SNMPv3 users
   ilo_snmp:
-    category: Manager
-    command: DeleteSpecifiedSNMPv3Users
+    category: "Manager"
+    command: "DeleteSpecifiedSNMPv3Users"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -12,3 +12,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

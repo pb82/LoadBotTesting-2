@@ -1,8 +1,8 @@
 ---
 - name: Get firmware upgrade/upload status
   ilo_firmware:
-    category: TaskService
-    command: GetFirmwareStatus
+    category: "TaskService"
+    command: "GetFirmwareStatus"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

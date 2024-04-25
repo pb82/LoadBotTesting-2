@@ -1,8 +1,8 @@
 ---
 - name: Verify BIOS attributes when username and password are defined
   community.general.redfish_command:
-    category: Systems
-    command: VerifyBiosAttributes
+    category: "Systems"
+    command: "VerifyBiosAttributes"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -12,3 +12,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

@@ -1,8 +1,8 @@
 ---
 - name: Perform restore operation on the iLO
   ilo_manage:
-    category: Manager
-    command: iLORestore
+    category: "Manager"
+    command: "iLORestore"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
@@ -11,3 +11,4 @@
 - name: Status
   debug:
     msg: "{{ result }}"
+

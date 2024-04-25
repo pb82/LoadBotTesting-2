@@ -2,8 +2,9 @@
 # tasks file for ledon
 - name: Turn LED on
   community.general.redfish_command:
-    category: Chassis
-    command: IndicatorLedOn
+    category: "Chassis"
+    command: "IndicatorLedOn"
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
+
