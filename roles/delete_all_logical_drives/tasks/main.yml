@@ -1,13 +1,13 @@
 ---
 - name: Delete all logical drives
-  ilo_storage:
+  register: result
+  hpe.ilo.ilo_storage:
     category: Systems
     command: DeleteAllLogicalDrives
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"

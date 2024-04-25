@@ -2,38 +2,38 @@
 - hosts: myhosts
   connection: local
   name: Update user password
-  gather_facts: False
+  gather_facts: false
   # vars_files: iLO_redfish.yml
 
   vars:
-  - loginname: Bhavya_check1
-  - new_pass: testpass123
+    - loginname: Bhavya_check1
+    - new_pass: testpass123
 
   tasks:
     - name: Create session
       community.general.redfish_command:
         category: Sessions
         command: CreateSession
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
       register: result
 
     - name: Update user password
       community.general.redfish_command:
         category: Accounts
         command: UpdateUserPassword
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
-        account_username: "{{ loginname }}"
-        account_password: "{{ new_pass }}"
+        account_username: "{{ _account_username_ }}"
+        account_password: "{{ _account_password_ }}"
         auth_token: "{{ result.session.token }}"
-        
+
     - name: Delete session using security token created by CreateSesssion above
       community.general.redfish_command:
         category: Sessions
         command: DeleteSession
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         auth_token: "{{ result.session.token }}"
         session_uri: "{{ result.session.uri }}"

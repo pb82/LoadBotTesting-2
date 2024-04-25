@@ -4,8 +4,8 @@
   community.general.ilo_redfish_config:
     category: Manager
     command: SetTimeZone
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
     attribute_name: TimeZone
-    attribute_value: "{{ attribute_value }}"
+    attribute_value: "{{ _attribute_value_ }}"

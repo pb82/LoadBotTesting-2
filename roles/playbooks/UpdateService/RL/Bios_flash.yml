@@ -2,19 +2,19 @@
 - hosts: myhosts
   connection: local
   name: Update service
-  gather_facts: False
+  gather_facts: false
 
   tasks:
     - name: Turn system power off
       community.general.redfish_command:
         category: Systems
         command: PowerForceOff
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
 
     - name: Flashfwpkg
-      ilo_fwupdate_command:
+      hpe.ilo.ilo_fwupdate_command:
         category: UpdateService
         command: Flashfwpkg
         baseuri: "{{ baseuri }}"
@@ -26,6 +26,6 @@
       community.general.redfish_command:
         category: Systems
         command: PowerOn
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"

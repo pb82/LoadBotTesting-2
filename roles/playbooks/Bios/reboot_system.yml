@@ -2,23 +2,23 @@
 - hosts: myhosts
   connection: local
   name: Set one-time BIOS boot device
-  gather_facts: False
+  gather_facts: false
 
   tasks:
     - name: Create session
       community.general.redfish_command:
         category: Sessions
         command: CreateSession
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
       register: result
 
     - name: Reboot system
       community.general.redfish_command:
         category: Systems
         command: PowerReboot
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         auth_token: "{{ result.session.token }}"
@@ -27,6 +27,6 @@
       community.general.redfish_command:
         category: Sessions
         command: DeleteSession
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         auth_token: "{{ result.session.token }}"
         session_uri: "{{ result.session.uri }}"
