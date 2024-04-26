@@ -1,13 +1,14 @@
 ---
 - name: Get server PostState
-  ilo_power:
+  register: server_poststate
+  hpe.ilo.ilo_power:
     category: Systems
     command: GetServerPostState
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: server_poststate
 
 - name: Server PostState
-  debug:
+  ansible.builtin.debug:
     msg: "{{ server_poststate }}"
+

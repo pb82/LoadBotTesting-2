@@ -1,13 +1,14 @@
 ---
 - name: Get server Hostname
-  ilo_manage:
+  register: server_hostname
+  hpe.ilo.ilo_manage:
     category: Manager
     command: GetHostName
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: server_hostname
 
 - name: Server Hostname
-  debug:
+  ansible.builtin.debug:
     msg: "{{ server_hostname }}"
+

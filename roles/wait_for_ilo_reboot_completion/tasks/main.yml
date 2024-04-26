@@ -1,13 +1,14 @@
 ---
 - name: Wait for iLO Reboot Completion
-  ilo_manage:
+  register: result
+  hpe.ilo.ilo_manage:
     category: Systems
     command: WaitforiLORebootCompletion
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: iLO reboot status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
+
