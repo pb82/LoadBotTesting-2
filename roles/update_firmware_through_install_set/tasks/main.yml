@@ -1,25 +1,26 @@
 ---
 - name: Check whether install set file exists on the VM
-  stat:
-    path: "{{ install_set }}"
   register: install_set_file_exists
+  ansible.builtin.stat:
+    path: "{{ install_set }}"
 
-- fail:
-    msg: "Install set file is not present on the VM, in the file path {{ install_set }}"
-  when: not install_set_file_exists.stat.exists
+- when: not install_set_file_exists.stat.exists
+  ansible.builtin.fail:
+    msg: Install set file is not present on the VM, in the file path {{ install_set }}
 
 - name: Read install set file
-  set_fact:
+  ansible.builtin.set_fact:
     input_file: "{{ lookup('file', '{{ install_set }}') | from_json }}"
 
 - name: Check whether maintenance window is provided
-  set_fact:
+  ansible.builtin.set_fact:
     maintenance_window: "{{ True if input_file.maintenance_window is defined else False}}"
 
 - name: Block for firmware upgradation without maintenance window
   block:
     - name: Perform firmware upgrade on the server without maintenance window through install set URL
-      ilo_firmware:
+      register: firmware_upgrade_rsp
+      hpe.ilo.ilo_firmware:
         category: UpdateService
         command: UpdateFirmwareThroughInstallSet
         baseuri: "{{ baseuri }}"
@@ -29,7 +30,6 @@
           Name: "{{ input_file.install_set_name }}"
           Description: "{{ input_file.Description | default('')}}"
           Install_set_sequence: "{{ input_file.install_set_sequence }}"
-      register: firmware_upgrade_rsp
 
     - name: Status
       debug:
@@ -40,7 +40,8 @@
 - name: Block for firmware upgradation with maintenance window
   block:
     - name: Perform firmware upgrade on the server with maintenance window through install set URL
-      ilo_firmware:
+      register: firmware_upgrade_rsp
+      hpe.ilo.ilo_firmware:
         category: UpdateService
         command: UpdateFirmwareThroughInstallSet
         baseuri: "{{ baseuri }}"
@@ -51,7 +52,6 @@
           Description: "{{ input_file.Description | default('')}}"
           Install_set_sequence: "{{ input_file.install_set_sequence }}"
         maintenance_window_details: "{{ input_file.maintenance_window}}"
-      register: firmware_upgrade_rsp
 
     - name: Status
       debug:

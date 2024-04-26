@@ -1,7 +1,7 @@
 ---
 # tasks file for UpdateRole
 - name: Update user role
-  ilo_redfish_command:
+  hpe.ilo.ilo_redfish_command:
     category: Accounts
     command: UpdateiLOUserRole
     baseuri: "{{ baseuri }}"

@@ -10,5 +10,5 @@
   register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"

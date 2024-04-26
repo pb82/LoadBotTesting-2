@@ -1,13 +1,13 @@
 ---
 - name: Get SNMPv3 users
-  ilo_snmp:
+  register: result
+  hpe.ilo.ilo_snmp:
     category: Manager
     command: GetSNMPv3Users
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: SNMPv3 users in the server
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
