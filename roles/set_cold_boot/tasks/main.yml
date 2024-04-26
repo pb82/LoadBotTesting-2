@@ -1,13 +1,13 @@
 ---
 - name: Set Cold Boot
-  ilo_power:
+  register: result
+  hpe.ilo.ilo_power:
     category: Systems
     command: ColdBoot
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
