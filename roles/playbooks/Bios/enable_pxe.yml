@@ -2,28 +2,28 @@
 - hosts: myhosts
   connection: local
   name: Enable PXE in NICs
-  gather_facts: False
+  gather_facts: false
   # vars_files: iLO_redfish.yml
 
   vars:
-    - bios_attr: {"Slot1NicBoot1": "NetworkBoot"}  # The dictionary is of the format {"attribute_name" : "attribute_value"}
+    - bios_attr: { Slot1NicBoot1: NetworkBoot } # The dictionary is of the format {"attribute_name" : "attribute_value"}
 
   tasks:
     - name: Create session
       community.general.redfish_command:
         category: Sessions
         command: CreateSession
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
       register: result
 
     - name: Set {{ bios_attr }}
       community.general.redfish_config:
         category: Systems
         command: SetBiosAttributes
-        bios_attributes: "{{ bios_attr }}"
-        baseuri: "{{ baseuri }}"
+        bios_attributes: "{{ _bios_attributes_ }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         auth_token: "{{ result.session.token }}"
@@ -33,7 +33,7 @@
       community.general.redfish_command:
         category: Systems
         command: PowerReboot
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         auth_token: "{{ result.session.token }}"
@@ -43,6 +43,6 @@
       community.general.redfish_command:
         category: Sessions
         command: DeleteSession
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         auth_token: "{{ result.session.token }}"
         session_uri: "{{ result.session.uri }}"

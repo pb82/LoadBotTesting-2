@@ -2,7 +2,7 @@
 - hosts: myhosts
   connection: local
   name: Disable WINS Registration
-  gather_facts: False
+  gather_facts: false
   # vars_files: iLO_redfish.yml
 
   vars:
@@ -13,25 +13,25 @@
       community.general.redfish_command:
         category: Sessions
         command: CreateSession
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
       register: result
 
     - name: Disable {{ attribute_name }}
       community.general.ilo_redfish_config:
         category: Manager
         command: SetWINSReg
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
-        attribute_name: "{{ attribute_name }}"
+        attribute_name: "{{ _attribute_name_ }}"
         auth_token: "{{ result.session.token }}"
 
     - name: Delete session using security token created by CreateSesssion above
       community.general.redfish_command:
         category: Sessions
         command: DeleteSession
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         auth_token: "{{ result.session.token }}"
         session_uri: "{{ result.session.uri }}"

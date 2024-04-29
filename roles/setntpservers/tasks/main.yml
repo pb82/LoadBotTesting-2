@@ -4,8 +4,8 @@
   community.general.ilo_redfish_config:
     category: Manager
     command: SetNTPServers
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
-    attribute_name: "{{ attribute_name }}"
-    attribute_value: "{{ attribute_value }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    attribute_name: "{{ _attribute_name_ }}"
+    attribute_value: "{{ _attribute_value_ }}"

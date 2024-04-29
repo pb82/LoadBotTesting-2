@@ -4,8 +4,8 @@
   community.general.redfish_command:
     category: Accounts
     command: UpdateUserRole
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
-    account_username: "{{ loginname }}"
-    roleid: "{{ roleid }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    account_username: "{{ _account_username_ }}"
+    roleid: "{{ _roleid_ }}"

@@ -1,13 +1,13 @@
 ---
 - name: Get network boot settings
-  ilo_boot:
+  register: network_boot_settings
+  hpe.ilo.ilo_boot:
     category: Systems
     command: GetBootSettings
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: network_boot_settings
 
 - name: Boot settings present in the server
-  debug:
+  ansible.builtin.debug:
     msg: "{{ network_boot_settings }}"

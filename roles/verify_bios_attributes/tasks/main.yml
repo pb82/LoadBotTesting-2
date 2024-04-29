@@ -3,12 +3,12 @@
   community.general.redfish_command:
     category: Systems
     command: VerifyBiosAttributes
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
-    bios_attributes: "{{ bios_attributes }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    bios_attributes: "{{ _bios_attributes_ }}"
   register: result
 
 - name: Status
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
