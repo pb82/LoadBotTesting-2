@@ -4,7 +4,7 @@
   community.general.redfish_command:
     category: Accounts
     command: DeleteUser
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
-    account_username: "{{ loginname }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
+    account_username: "{{ _account_username_ }}"

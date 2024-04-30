@@ -1,13 +1,13 @@
 ---
 - name: Get logical drives
-  ilo_storage:
+  register: logical_drives_data
+  hpe.ilo.ilo_storage:
     category: Systems
     command: GetLogicalDrives
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: logical_drives_data
 
 - name: Logical drives present in the server
-  debug:
+  ansible.builtin.debug:
     msg: "{{ logical_drives_data }}"

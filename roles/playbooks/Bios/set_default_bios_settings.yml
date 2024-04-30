@@ -2,7 +2,7 @@
 - hosts: myhosts
   connection: local
   name: Set default BIOS settings
-  gather_facts: False
+  gather_facts: false
   # vars_files: iLO_redfish.yml
 
   tasks:
@@ -10,16 +10,16 @@
       community.general.redfish_command:
         category: Sessions
         command: CreateSession
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
       register: result
 
     - name: Set BIOS default settings
       community.general.redfish_config:
         category: Systems
         command: SetBiosDefaultSettings
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         auth_token: "{{ result.session.token }}"
@@ -29,7 +29,7 @@
       community.general.redfish_command:
         category: Systems
         command: PowerReboot
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         auth_token: "{{ result.session.token }}"
@@ -39,6 +39,6 @@
       community.general.redfish_command:
         category: Sessions
         command: DeleteSession
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         auth_token: "{{ result.session.token }}"
         session_uri: "{{ result.session.uri }}"

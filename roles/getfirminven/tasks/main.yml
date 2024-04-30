@@ -4,7 +4,7 @@
   community.general.redfish_info:
     category: Update
     command: GetFirmwareInventory
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"
   register: result_attr

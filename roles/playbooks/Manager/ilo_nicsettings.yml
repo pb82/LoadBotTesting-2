@@ -2,7 +2,7 @@
 - hosts: myhosts
   connection: local
   name: Set iLO NIC settings
-  gather_facts: False
+  gather_facts: false
   # vars_files: iLO_redfish.yml
 
   vars:
@@ -19,53 +19,52 @@
       community.general.redfish_command:
         category: Sessions
         command: CreateSession
-        baseuri: "{{ baseuri }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        baseuri: "{{ _baseuri_ }}"
+        username: "{{ _username_ }}"
+        password: "{{ _password_ }}"
       register: result
 
     - name: Set {{ ntp_atrrname }} to {{ ntp_attrvalue }}
       community.general.ilo_redfish_config:
         category: Manager
         command: SetNTPServers
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
-        attribute_name: "{{ ntp_atrrname }}"
-        attribute_value: "{{ ntp_attrvalue }}"
+        attribute_name: "{{ _attribute_name_ }}"
+        attribute_value: "{{ _attribute_value_ }}"
         auth_token: "{{ result.session.token }}"
-
 
     - name: Set DNS Server to {{ dns_server }}
       community.general.ilo_redfish_config:
         category: Manager
         command: SetDNSserver
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         attribute_name: DNSServers
-        attribute_value: "{{ dns_server }}"
+        attribute_value: "{{ _attribute_value_ }}"
         auth_token: "{{ result.session.token }}"
 
     - name: Set Domain name to {{ domain_name }}
       community.general.ilo_redfish_config:
         category: Manager
         command: SetDomainName
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         attribute_name: DomainName
-        attribute_value: "{{ domain_name }}"
+        attribute_value: "{{ _attribute_value_ }}"
         auth_token: "{{ result.session.token }}"
 
     - name: Disable {{ WINS_attrname }}
       community.general.ilo_redfish_config:
         category: Manager
         command: SetWINSReg
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
-        attribute_name: "{{ WINS_attrname }}"
+        attribute_name: "{{ _attribute_name_ }}"
         auth_token: "{{ result.session.token }}"
 
     - name: Set HostName
@@ -74,7 +73,7 @@
         command: SetManagerNic
         nic_config:
           HostName: "{{ attribute_value }}"
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         # username: "{{ username }}"
         # password: "{{ password }}"
         auth_token: "{{ result.session.token }}"
@@ -83,6 +82,6 @@
       community.general.redfish_command:
         category: Sessions
         command: DeleteSession
-        baseuri: "{{ baseuri }}"
+        baseuri: "{{ _baseuri_ }}"
         auth_token: "{{ result.session.token }}"
         session_uri: "{{ result.session.uri }}"

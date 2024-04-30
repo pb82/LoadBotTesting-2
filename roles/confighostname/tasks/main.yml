@@ -6,6 +6,6 @@
     command: SetManagerNic
     nic_config:
       HostName: "{{ attribute_value }}"
-    baseuri: "{{ baseuri }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
+    baseuri: "{{ _baseuri_ }}"
+    username: "{{ _username_ }}"
+    password: "{{ _password_ }}"

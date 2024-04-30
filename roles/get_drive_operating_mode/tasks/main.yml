@@ -1,13 +1,13 @@
 ---
 - name: Get Drive Operating Mode
-  ilo_storage:
+  register: result
+  hpe.ilo.ilo_storage:
     category: Systems
     command: GetDriveOperatingMode
     baseuri: "{{ baseuri }}"
     username: "{{ username }}"
     password: "{{ password }}"
-  register: result
 
 - name: Drive Operating Mode
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result }}"
